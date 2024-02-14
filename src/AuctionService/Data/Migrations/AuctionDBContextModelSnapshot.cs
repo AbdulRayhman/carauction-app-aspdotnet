@@ -10,114 +10,110 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AuctionService.Data.Migrations
 {
-    [DbContext(typeof(AuctionDBContext))]
-    partial class AuctionDBContextModelSnapshot : ModelSnapshot
+  [DbContext(typeof(AuctionDBContext))]
+  partial class AuctionDBContextModelSnapshot : ModelSnapshot
+  {
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+      modelBuilder
+          .HasAnnotation("ProductVersion", "8.0.1")
+          .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+      NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("AuctionService.Entites.Auction", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+      modelBuilder.Entity("AuctionService.Entites.Auction", b =>
+          {
+            b.Property<Guid>("Id")
+                      .ValueGeneratedOnAdd()
+                      .HasColumnType("uuid");
 
-                    b.Property<DateTime>("AuctionAt")
-                        .HasColumnType("timestamp with time zone");
+            b.Property<DateTime>("AuctionAt")
+                      .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+            b.Property<DateTime>("AuctionEnd")
+                .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("CurrentHighBid")
-                        .HasColumnType("integer");
+            b.Property<DateTime>("CreatedAt")
+                  .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("ReservePrice")
-                        .HasColumnType("integer");
+            b.Property<int?>("CurrentHighBid")
+                      .HasColumnType("integer");
 
-                    b.Property<string>("Seller")
-                        .IsRequired()
-                        .HasColumnType("text");
+            b.Property<int>("ReservePrice")
+                      .HasColumnType("integer");
 
-                    b.Property<int?>("SoldAmount")
-                        .HasColumnType("integer");
+            b.Property<string>("Seller")
+                .HasColumnType("text");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
+            b.Property<int?>("SoldAmount")
+                      .HasColumnType("integer");
 
-                    b.Property<DateTime>("UpdateAt")
-                        .HasColumnType("timestamp with time zone");
+            b.Property<int>("Status")
+                      .HasColumnType("integer");
 
-                    b.Property<string>("Winner")
-                        .IsRequired()
-                        .HasColumnType("text");
+            b.Property<DateTime>("UpdateAt")
+                      .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("Id");
+            b.Property<string>("Winner")
+                .HasColumnType("text");
 
-                    b.ToTable("Auctions");
-                });
+            b.HasKey("Id");
 
-            modelBuilder.Entity("AuctionService.Entites.Item", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+            b.ToTable("Auctions");
+          });
 
-                    b.Property<Guid>("AuctionId")
-                        .HasColumnType("uuid");
+      modelBuilder.Entity("AuctionService.Entites.Item", b =>
+          {
+            b.Property<Guid>("Id")
+                      .ValueGeneratedOnAdd()
+                      .HasColumnType("uuid");
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("text");
+            b.Property<Guid>("AuctionId")
+                      .HasColumnType("uuid");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
+            b.Property<string>("Color")
+                .HasColumnType("text");
 
-                    b.Property<string>("Make")
-                        .IsRequired()
-                        .HasColumnType("text");
+            b.Property<string>("ImageUrl")
+                .HasColumnType("text");
 
-                    b.Property<int>("Milage")
-                        .HasColumnType("integer");
+            b.Property<string>("Make")
+                .HasColumnType("text");
 
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("text");
+            b.Property<int>("Mileage")
+                .HasColumnType("integer");
 
-                    b.Property<int>("Year")
-                        .HasColumnType("integer");
+            b.Property<string>("Model")
+                .HasColumnType("text");
 
-                    b.HasKey("Id");
+            b.Property<int>("Year")
+                      .HasColumnType("integer");
 
-                    b.HasIndex("AuctionId")
-                        .IsUnique();
+            b.HasKey("Id");
 
-                    b.ToTable("Items");
-                });
+            b.HasIndex("AuctionId")
+                      .IsUnique();
 
-            modelBuilder.Entity("AuctionService.Entites.Item", b =>
-                {
-                    b.HasOne("AuctionService.Entites.Auction", "Auction")
-                        .WithOne("Item")
-                        .HasForeignKey("AuctionService.Entites.Item", "AuctionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            b.ToTable("Items");
+          });
 
-                    b.Navigation("Auction");
-                });
+      modelBuilder.Entity("AuctionService.Entites.Item", b =>
+          {
+            b.HasOne("AuctionService.Entites.Auction", "Auction")
+                      .WithOne("Item")
+                      .HasForeignKey("AuctionService.Entites.Item", "AuctionId")
+                      .OnDelete(DeleteBehavior.Cascade)
+                      .IsRequired();
 
-            modelBuilder.Entity("AuctionService.Entites.Auction", b =>
-                {
-                    b.Navigation("Item")
-                        .IsRequired();
-                });
+            b.Navigation("Auction");
+          });
+
+      modelBuilder.Entity("AuctionService.Entites.Auction", b =>
+          {
+            b.Navigation("Item");
+          });
 #pragma warning restore 612, 618
-        }
     }
+  }
 }

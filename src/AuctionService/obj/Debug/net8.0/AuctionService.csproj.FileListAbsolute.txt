@@ -104,3 +104,4 @@
 /home/abdulreham/Persona;/cartiess/src/AuctionService/obj/Debug/net8.0/AuctionService.pdb
 /home/abdulreham/Persona;/cartiess/src/AuctionService/obj/Debug/net8.0/AuctionService.genruntimeconfig.cache
 /home/abdulreham/Persona;/cartiess/src/AuctionService/obj/Debug/net8.0/ref/AuctionService.dll
+/home/abdulreham/Persona;/cartiess/src/AuctionService/obj/Debug/net8.0/AuctionService.sourcelink.json

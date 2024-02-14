@@ -11,13 +11,16 @@ internal class Program
         builder.Services.AddControllers();
         builder.Services.AddDbContext<AuctionDBContext>(opt =>
         {
-            DbContextOptionsBuilder dbContextOptionsBuilder = opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-        });
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+          opt.UseNpgsql("Server=localhost:5432; User Id=postgres; Password=postgrespw; Database=auctions");
 
-        var app = builder.Build();
+        });
+
+
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    var app = builder.Build();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
@@ -26,12 +29,19 @@ internal class Program
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
+    // app.UseHttpsRedirection();
 
-        app.UseAuthorization();
+    app.UseAuthorization();
 
-        app.MapControllers();
-
-        app.Run();
+    app.MapControllers();
+    try
+    {
+      DBInitializer.InitDB(app);
     }
+    catch (Exception e)
+    {
+      Console.WriteLine(e);
+    }
+    app.Run();
+  }
 }
