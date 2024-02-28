@@ -2816,11 +2816,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/abdulreham/Persona;/cartiess/src/AuctionService/AuctionService.csproj",
+      "projectUniqueName": "/home/abdulreham/Personal/cartiess/src/AuctionService/AuctionService.csproj",
       "projectName": "AuctionService",
-      "projectPath": "/home/abdulreham/Persona;/cartiess/src/AuctionService/AuctionService.csproj",
+      "projectPath": "/home/abdulreham/Personal/cartiess/src/AuctionService/AuctionService.csproj",
       "packagesPath": "/home/abdulreham/.nuget/packages/",
-      "outputPath": "/home/abdulreham/Persona;/cartiess/src/AuctionService/obj/",
+      "outputPath": "/home/abdulreham/Personal/cartiess/src/AuctionService/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/abdulreham/.nuget/NuGet/NuGet.Config"
@@ -2841,6 +2841,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2883,7 +2888,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

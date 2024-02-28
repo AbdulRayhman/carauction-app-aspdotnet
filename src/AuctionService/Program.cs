@@ -3,15 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {
-    private static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
-        // Add services to the container.
+  private static void Main(string[] args)
+  {
+    var builder = WebApplication.CreateBuilder(args);
+    // Add services to the container.
 
-        builder.Services.AddControllers();
-        builder.Services.AddDbContext<AuctionDBContext>(opt =>
+    builder.Services.AddControllers();
+    builder.Services.AddDbContext<AuctionDBContext>(opt =>
         {
-          opt.UseNpgsql("Server=localhost:5432; User Id=postgres; Password=postgrespw; Database=auctions");
+          Console.WriteLine("TESTSTSTST");
+          opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 
         });
 
@@ -22,12 +23,12 @@ internal class Program
 
     var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+      app.UseSwagger();
+      app.UseSwaggerUI();
+    }
 
     // app.UseHttpsRedirection();
 
